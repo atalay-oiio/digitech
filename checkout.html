@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Checkout | DigiTech</title>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- HEADER -->
+
+    <header class="header">
+      <div class="logo">Digitech</div>
+
+      <a href="cart.html" class="cart-btn"> ← Back to Cart </a>
+    </header>
+
+    <!-- CHECKOUT -->
+
+    <main class="checkout">
+      <!-- BILLING FORM -->
+
+      <section class="checkout-form">
+        <h2>Billing Details</h2>
+
+        <form class="billing-form">
+          <input type="text" id="name" placeholder="Full Name" required />
+
+          <input type="email" id="email" placeholder="Email Address" required />
+
+          <input type="tel" id="address" placeholder="Phone Number" required />
+
+          <input type="text" id="card" placeholder="Street Address" required />
+
+          <div class="form-row">
+            <input type="text" placeholder="City" required />
+
+            <input type="text" placeholder="ZIP Code" required />
+          </div>
+
+          <input type="text" placeholder="Country" required />
+
+          <h2>Payment Details</h2>
+
+          <input
+            type="text"
+            class="card-holder"
+            placeholder="Card Holder Name"
+            required
+          />
+
+          <input
+            type="text"
+            class="card-number"
+            placeholder="Card Number"
+            maxlength="19"
+            required
+          />
+
+          <div class="form-row">
+            <input
+              type="text"
+              class="expiry"
+              placeholder="MM/YY"
+              maxlength="5"
+              required
+            />
+
+            <input
+              type="password"
+              class="cvv"
+              placeholder="CVV"
+              maxlength="3"
+              required
+            />
+          </div>
+        </form>
+      </section>
+
+      <!-- ORDER SUMMARY -->
+
+      <section class="order-summary">
+        <h2>Order Summary</h2>
+
+        <div class="summary-products"></div>
+
+        <hr />
+
+        <h3 class="summary-total"></h3>
+
+        <button class="place-order">Place Order</button>
+        <br></br>
+        <br></br>
+
+        <a href="login.html" class="login-btn">
+            login
+        </a>
+      </section>
+    </main>
+
+    <script src="checkout.js"></script>
+  </body>
+</html>

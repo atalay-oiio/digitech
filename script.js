@@ -14,7 +14,7 @@ const products = [
     id: 1,
     title: "iPhone 16",
     price: 2100,
-    rating: 4.7,
+    rating: 3.9,
     image: "image/iphone16.jpg",
     stock: true,
     badge: "",
@@ -24,7 +24,7 @@ const products = [
 
   {
     id: 2,
-    title: "iPhone 18 Pro",
+    title: "iPhone 18 Pro Max",
     price: 2399,
     rating: 4.9,
     image: "image/iphone.jpg",
@@ -48,7 +48,7 @@ const products = [
     id: 4,
     title: "Galaxy S25 Ultra",
     price: 2000,
-    rating: 4.8,
+    rating: 4.6,
     image: "image/s25ultra.jpg",
     stock: true,
     badge: "HOT",
@@ -73,7 +73,7 @@ const products = [
     rating: 4.9,
     image: "image/zflip7.jpg",
     stock: true,
-    badge: "NEW",
+    badge: "HOT",
     description: "Samsung's foldable smartphone with a compact premium design.",
   },
 ];
@@ -118,6 +118,8 @@ displayProducts();
 const searchInput = document.querySelector("#search");
 const cartCount = document.querySelector(".cart-count");
 const themeBtn = document.querySelector(".theme-btn");
+const userInfo = document.querySelector(".user-info");
+const logoutBtn = document.querySelector(".logout-btn");
 
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
@@ -260,4 +262,19 @@ modalBuy.addEventListener("click", () => {
   modal.classList.remove("show");
 
   alert("✅ Product added to cart!");
+});
+const user = JSON.parse(localStorage.getItem("user"));
+const loggedIn = localStorage.getItem("loggedIn");
+
+if (loggedIn === "true" && user) {
+  userInfo.textContent = `👤 ${user.name}`;
+  logoutBtn.style.display = "inline-block";
+}
+
+logoutBtn.addEventListener("click", () => {
+  localStorage.removeItem("loggedIn");
+
+  alert("Logged out successfully.");
+
+  location.reload();
 });

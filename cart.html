@@ -1,33 +1,31 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Your Cart</title>
 
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="logo">Digitech</div>
 
-<header class="header">
-    <div class="logo">Digitech</div>
+      <a href="index.html" class="cart-btn">⬅ Continue Shopping</a>
+    </header>
 
-    <a href="index.html" class="cart-btn">⬅ Continue Shopping</a>
-</header>
+    <main>
+      <div class="cart-products"></div>
 
-<main>
-
-    <div class="cart-products"></div>
-
-    <div class="cart-summary">
+      <div class="cart-summary">
         <h2>Total: <span class="total-price">$0</span></h2>
 
         <button class="clear-cart">Clear Cart</button>
-    </div>
 
-</main>
+        <a href="checkout.html" class="cart-btn"> Proceed to Checkout → </a>
+      </div>
+    </main>
 
-<script src="cart.js"></script>
-
-</body>
+    <script src="cart.js"></script>
+  </body>
 </html>

@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Account | DigiTech</title>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="logo">DigiTech</div>
+
+      <a href="index.html" class="cart-btn"> ← Home </a>
+    </header>
+
+    <main class="auth-page">
+      <form class="auth-form">
+        <h2>Create Account</h2>
+
+        <input
+          type="text"
+          id="register-name"
+          placeholder="Full Name"
+          required
+        />
+
+        <input type="email" id="register-email" placeholder="Email" required />
+
+        <input
+          type="password"
+          id="register-password"
+          placeholder="Password"
+          required
+        />
+
+        <input
+          type="password"
+          id="register-confirm"
+          placeholder="Confirm Password"
+          required
+        />
+
+        <button type="submit">Create Account</button>
+
+        <p>
+          Already have an account?
+
+          <a href="login.html"> Login </a>
+        </p>
+      </form>
+    </main>
+
+    <script src="register.js"></script>
+  </body>
+</html>
