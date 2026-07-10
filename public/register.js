@@ -1,9 +1,7 @@
 "use strict";
-
-
 const form = document.querySelector(".auth-form");
 
-form.addEventListener("submit", function (e) {
+form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   const name = document.querySelector("#register-name").value.trim();
@@ -21,15 +19,31 @@ form.addEventListener("submit", function (e) {
     return;
   }
 
-  const user = {
-    name,
-    email,
-    password,
-  };
+  try {
+    const response = await fetch("/api/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name,
+        email,
+        password,
+      }),
+    });
 
-  localStorage.setItem("user", JSON.stringify(user));
+    const data = await response.json();
 
-  alert("✅ Account created successfully!");
+    if (!response.ok) {
+      alert(data.message);
+      return;
+    }
 
-  window.location.href = "login.html";
+    alert(data.message);
+
+    window.location.href = "login.html";
+  } catch (erro) {
+    console.error(err);
+    alert("Server error.");
+  }
 });

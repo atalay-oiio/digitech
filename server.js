@@ -1,45 +1,58 @@
-const users = require("./users");
-const products = require("./products");
 const express = require("express");
+const products = require("./products");
 
 const app = express();
 const PORT = 3000;
 
-// public klasörünü herkes erişebilsin
+const users = [];
+
+app.use(express.json());
 app.use(express.static("public"));
 
-// Ana sayfa
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/public/index.html");
 });
 
+// PRODUCTS
 app.get("/api/products", (req, res) => {
   res.json(products);
 });
 
+// REGISTER
 app.post("/api/register", (req, res) => {
-  const { name, email, password } = req.body;
+  console.log("REGISTER HIT");
+  console.log(req.body);
 
-  const exists = users.find((user) => user.email === email);
+  res.json({
+    message: "Register works",
+  });
+});
+  
+ 
+// LOGIN
+app.post("/api/login", (req, res) => {
+  const { email, password } = req.body;
 
-  if (exists) {
-    return res.status(400).json({
-      message: "Email already exists",
+  const user = users.find(
+    (user) => user.email === email && user.password === password,
+  );
+
+  if (!user) {
+    return res.status(401).json({
+      message: "Incorrect email or password.",
     });
   }
 
-  users.push({
-    id: Date.now(),
-    name,
-    email,
-    password,
-  });
-
   res.json({
-    message: "Account created successfully",
+    message: "Login successful.",
+    user: {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+    },
   });
 });
+
 app.listen(PORT, () => {
   console.log(`Server running: http://localhost:${PORT}`);
 });
-app.use(express.json());

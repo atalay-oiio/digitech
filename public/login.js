@@ -2,26 +2,44 @@
 
 const form = document.querySelector(".auth-form");
 
-form.addEventListener("submit", function (e) {
+form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   const email = document.querySelector("#login-email").value.trim();
   const password = document.querySelector("#login-password").value;
 
-  const user = JSON.parse(localStorage.getItem("user"));
-
-  if (!user) {
-    alert("No account found. Please create an account first.");
+  if (!email || !password) {
+    alert("Please fill in all fields.");
     return;
   }
 
-  if (email === user.email && password === user.password) {
-    localStorage.setItem("loggedIn", "true");
+  try {
+    const response = await fetch("/api/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    });
 
-    alert("✅ Login successful!");
+    const data = await response.json();
+
+    if (!response.ok) {
+      alert(data.message);
+      return;
+    }
+
+    localStorage.setItem("loggedIn", "true");
+    localStorage.setItem("user", JSON.stringify(data.user));
+
+    alert(data.message);
 
     window.location.href = "index.html";
-  } else {
-    alert("Incorrect email or password.");
+  } catch (err) {
+    console.error(err);
+    alert("Server error.");
   }
 });
